@@ -1,0 +1,50 @@
+create database decodemtl_addressbook;
+use decodemtl_addressbook;
+
+create table Account 
+(id INT auto_increment primary key, 
+email VARCHAR(255),
+password VARCHAR(40),
+createdOn DATETIME,
+modidiedOn DATETIME);
+
+create table AddressBook
+(id INT auto_increment primary key,
+accountId INT,
+name VARCHAR(255),
+createdOn DATETIME,
+modifiedOn DATETIME);
+
+create table Entry 
+(id INT auto_increment primary key, 
+addressBookId INT,
+firstName VARCHAR(50),
+lastName VARCHAR(50),
+birthday DATETIME,
+type ENUM ('phone','address','electronic-mail')
+);
+
+create table Address
+(id INT auto_increment primary key,
+entryId INT,
+type ENUM ('home','work','other'),
+addressLine1 VARCHAR(255),
+addressLine2 VARCHAR (255),
+city VARCHAR(255)
+);
+
+create table ElectronicMail
+(id INT auto_increment primary key,
+entryId INT,
+type ENUM ('home','work','other'),
+content VARCHAR(255)
+);
+
+
+create table Phone
+(id INT auto_increment primary key,
+entryId INT,
+type ENUM('home','work','other'),
+subtype ENUM('landline','cellular','fax'),
+content VARCHAR(255)
+);
